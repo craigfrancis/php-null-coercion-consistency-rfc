@@ -160,7 +160,7 @@ composer require --dev vimeo/psalm
 ./vendor/bin/psalm
 No errors found!
 </code>
-Note: Psalm can detect this problem at [[https://psalm.dev/docs/running_psalm/error_levels/|levels 1, 2, and 3]] (don't use a baseline to hide issues).
+Note: Psalm can detect this problem at [[https://psalm.dev/docs/running_psalm/error_levels/|levels 1, 2, and 3]] (don't use a baseline).
 
 <code cli>
 composer require --dev phpstan/phpstan
