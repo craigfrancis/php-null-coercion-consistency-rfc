@@ -8,7 +8,7 @@
   * Author: Craig Francis [craig#at#craigfrancis.co.uk]
   * Status: Draft
   * First Published at: https://wiki.php.net/rfc/null_coercion_consistency
-  * GitHub Repo: https://github.com/craigfrancis/php-null-coercion-consistency
+  * GitHub Repo: https://github.com/craigfrancis/php-null-coercion-consistency-rfc
   * Implementation: ?
 
 ===== Introduction =====
@@ -160,7 +160,7 @@ composer require --dev vimeo/psalm
 ./vendor/bin/psalm
 No errors found!
 </code>
-Note: Psalm can detect this problem at [[https://psalm.dev/docs/running_psalm/error_levels/|levels 1, 2, and 3]]; and don't use a baseline to hide issues.
+Note: Psalm can detect this problem at [[https://psalm.dev/docs/running_psalm/error_levels/|levels 1, 2, and 3]] (don't use a baseline to hide issues).
 
 <code cli>
 composer require --dev phpstan/phpstan
@@ -194,11 +194,24 @@ E 1 / 1 (100%)
 
 <code cli>
 composer require friendsofphp/php-cs-fixer
-./vendor/bin/php-cs-fixer fix src --allow-risky=yes
+./vendor/bin/php-cs-fixer fix src --diff --allow-risky=yes
 Loaded config default.
+Using cache file ".php-cs-fixer.cache".
    1) src/index.php
+      ---------- begin diff ----------
+--- src/index.php
++++ src/index.php
+@@ -1,4 +1,4 @@
+ <?php
++
+ $nullable = ($_GET['a'] ?? null);
+ echo htmlentities($nullable);
+-?>
+\ No newline at end of file
 
-Fixed all files in 0.005 seconds, 12.000 MB memory used
+      ----------- end diff -----------
+
+Fixed all files in 0.012 seconds, 12.000 MB memory used
 </code>
 
 <code cli>
