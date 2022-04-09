@@ -118,7 +118,7 @@ $search = $request->getGet('q'); // CodeIgniter
 
 $value = array_pop($empty_array);
 $value = mysqli_fetch_row($result);
-$value = json_decode($json); // Invalid JSON, or deeper than the nesting limit.
+$value = json_decode($json); // Invalid JSON, or nesting limit.
 ```
 
 Examples where NULL has been fine for scripts not using `strict_types=1`:
@@ -241,6 +241,7 @@ Fixed all files in 0.012 seconds, 12.000 MB memory used
 composer require --dev phpcompatibility/php-compatibility
 sed -i '' -E 's/(PHPCSHelper::getConfigData)/(string) \1/g' vendor/phpcompatibility/php-compatibility/PHPCompatibility/Sniff.php
 ./vendor/bin/phpcs --config-set installed_paths vendor/phpcompatibility/php-compatibility
+
 ./vendor/bin/phpcs -p ./src/ --standard=PHPCompatibility --runtime-set testVersion 8.1
 . 1 / 1 (100%)
 ```
