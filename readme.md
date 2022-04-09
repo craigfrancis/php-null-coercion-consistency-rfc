@@ -72,7 +72,6 @@ With user-defined functions, while this does not cause a backwards compatibility
 ```php
 function user_function(string $s, int $i, float $f, bool $b) {
   var_dump($s, $i, $f, $b);
-  echo "\n";
 }
 
 user_function('1', '1', '1', '1');
