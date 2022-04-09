@@ -67,6 +67,30 @@ $o[] = htmlspecialchars(false);
 $o[] = htmlspecialchars(NULL); // Deprecated in 8.1, Fatal Error in 9.0?
 ```
 
+With user-defined functions, while this does not cause a backwards compatibility issue (details below), it still highlights the coercion inconstancy, and that some type checking is happening in an environment that does not expect type checking:
+
+```php
+function user_function(string $s, int $i, float $f, bool $b) {
+  var_dump($s, $i, $f, $b);
+  echo "\n";
+}
+
+user_function('1', '1', '1', '1');
+  // string(1) "1" / int(1) / float(1) / bool(true)
+
+user_function(2, 2, 2, 2);
+  // string(1) "2" / int(2) / float(2) / bool(true)
+
+user_function(3.3, 3.3, 3.3, 3.3);
+  // string(3) "3.3" / int(3) / float(3.3) / bool(true)
+
+user_function(false, false, false, false);
+  // string(0) "" / int(0) / float(0) / bool(false)
+
+user_function(NULL, NULL, NULL, NULL);
+  // Uncaught TypeError x4?
+```
+
 Arrays, Resources, and Objects (without `__toString()`) cannot be coerced (for fairly obvious reasons).
 
 String/Int/Float/Bool can be coerced.
