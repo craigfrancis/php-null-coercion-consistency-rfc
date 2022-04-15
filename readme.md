@@ -130,7 +130,7 @@ $value = mysqli_fetch_row($result);
 $value = json_decode($json); // Invalid JSON, or nesting limit.
 ```
 
-Examples where NULL has previously been fine for scripts not using `strict_types=1`:
+Examples, often working with user input, where NULL has previously been fine:
 
 ```php
 $search_trimmed = trim($search);
@@ -154,10 +154,12 @@ socket_write($socket, $search);
 xmlwriter_text($writer, $search);
 ```
 
-And developers have used `NULL` to skip certain parameters, e.g.
+And developers have used NULL to skip certain parameters, e.g.
 
 ```php
 setcookie('q', $search, NULL, NULL, NULL, true, true); // x4
+
+substr($string, NULL, 3);
 
 mail('nobody@example.com', 'subject', 'message', NULL, '-fwebmaster@example.com');
 ```
@@ -170,7 +172,7 @@ As an aside, there are also roughly [104 questionable](https://github.com/craigf
 
 The only realistic way for developers to find when NULL is passed to these internal functions is to use the deprecation notices (not ideal).
 
-It is possible to use very strict Static Analysis, to follow every variable from source to sink (to check if a variable could be `NULL`), but most developers are not in a position to do this (i.e. not using static analysis, or not at a high enough level, or they are using a baseline to ignore).
+It is possible to use very strict Static Analysis, to follow every variable from source to sink (to check if a variable could be NULL), but most developers are not in a position to do this (i.e. not using static analysis, or not at a high enough level, or they are using a baseline to ignore).
 
 In the last JetBrains developer survey, where 67% regularly used Laravel, **only 33% used Static Analysis** ([source](https://www.jetbrains.com/lp/devecosystem-2021/php/#PHP_do-you-use-static-analysis)); where it's fair to say many still would not identify these possible NULL values.
 
@@ -354,7 +356,7 @@ TODO
 
 ## Rejected Features
 
-Did consider updating some parameters to accept NULL ([details](https://wiki.php.net/rfc/allow_null)).
+- Updating some parameters to accept NULL ([details](https://wiki.php.net/rfc/allow_null)). This was rejected because some developers view NULL as a missing/invalid value that should never be passed to functions like `htmlspecialchars()` ([quiz results](https://quiz.craigfrancis.co.uk/)).
 
 ## Notes
 
