@@ -26,7 +26,7 @@ There was a [short discussion](https://externals.io/message/112327) about the or
 The general direction of [Unify PHP's typing modes](https://github.com/Girgias/unify-typing-modes-rfc) by Girgias is correct, because automatic coercions like `substr($string, "offset")` and `htmlspecialchars(array())` are clearly problematic; but the following is common, and has been fine:
 
 ```php
-$search = filter_input(INPUT_GET, 'q'); // Or similar examples below.
+$search = filter_input(INPUT_GET, 'q'); // Or similar (examples below)
 
 echo 'Results for ' . htmlspecialchars($search);
 ```
