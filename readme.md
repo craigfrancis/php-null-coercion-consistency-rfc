@@ -47,6 +47,8 @@ Coercion from NULL is well defined:
 For example:
 
 ```php
+// echo(string ...$expressions): void
+// print(string $expression): int
 print('A');
 print(1);
 print(1.2);
