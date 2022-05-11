@@ -392,6 +392,8 @@ Some function parameters could be updated to rase a Fatal Error when `NULL` **or
 - `$method` in [method_exists()](https://php.net/method_exists)
 - `$json` in [json_decode()](https://php.net/json_decode)
 
+It might be appropriate for coercion and explicit casting/converting to work in the same way, even if they were to become stricter in the values they accept; e.g. `intval("")` and `((int) "")` currently return int(0), whereas `(5 + "")` results in a TypeError.
+
 ## Voting
 
 Accept the RFC
